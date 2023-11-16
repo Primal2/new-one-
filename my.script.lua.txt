@@ -1,0 +1,65 @@
+-- Define variables to track game state
+local warInProgress = false
+local eldiaTitans = 4
+local marleyTitans = 5
+
+-- Function to start a war
+function startWar()
+    warInProgress = true
+    print("War has begun! Transform into titans and engage in combat!")
+end
+
+-- Function for player transformation into a mindless titan
+function transformIntoTitan(player)
+    -- Check conditions and transform player into a titan
+    if warInProgress and player.hasTitanSerum then
+        player.transformed = true
+        print(player.name .. " has transformed into a mindless titan!")
+    end
+end
+
+-- Function for combat between players
+function engageInCombat(attacker, target)
+    if warInProgress then
+        if attacker.transformed and target.isTitanShifter then
+            -- Logic for combat between titans
+            print(attacker.name .. " attacks " .. target.name .. "!")
+            -- Add logic for combat resolution, such as determining winner and loser
+            -- Consider abilities, stats, etc.
+        else
+            -- Logic for combat between non-transformed players
+            print(attacker.name .. " engages in combat with " .. target.name .. "!")
+            -- Add logic for combat resolution between non-titans
+        end
+    else
+        print("There's no war in progress!")
+    end
+end
+
+-- Function to unlock abilities based on achievements
+function unlockAbilities(player, achievement)
+    -- Check achievements and unlock corresponding abilities for the player
+    if achievement == "kills" then
+        player.abilities.hardening = true
+        print(player.name .. " unlocked the ability: Hardening!")
+    elseif achievement == "timeAsTitan" then
+        player.abilities.prolongedEndurance = true
+        print(player.name .. " unlocked the mastery: Prolonged Titan Endurance!")
+    end
+end
+
+-- Sample usage:
+-- Assume player1 and player2 are defined with respective attributes like name, transformed state, abilities, etc.
+
+-- Starting a war
+startWar()
+
+-- Player transformation
+transformIntoTitan(player1)
+
+-- Combat between players
+engageInCombat(player1, player2)
+
+-- Unlocking abilities based on achievements
+unlockAbilities(player1, "kills")
+unlockAbilities(player2, "timeAsTitan")
